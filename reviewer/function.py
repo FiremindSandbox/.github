@@ -51,7 +51,9 @@ def get_confluence_page_content(page_id, confluence_url, email, api_token):
         )
         return page_title, page_content
     else:
-        return f"Error: {response.status_code} - {response.text}"
+        error_message = f"Error: {response.status_code} - {response.text}"
+        return None, error_message
+
 
 
 def extract_headers_and_content(content):
