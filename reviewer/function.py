@@ -235,7 +235,7 @@ def handle_code_review_request(page_id, filepath, system_prompt_template):
     formatted_message = format_message("user", context)
     formatted_prompt = format_prompt(system_prompt)
     response = generate_output(
-        MODEL_IDS["nova-micro"]["id"], formatted_prompt, formatted_message
+        MODEL_IDS["nova-pro"]["id"], formatted_prompt, formatted_message
     )
     return response
 
