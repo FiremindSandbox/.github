@@ -79,7 +79,7 @@ jobs:
             cd reviewer
             poetry export --without-hashes -o requirements.txt
             pip install -r requirements.txt
-            cd ../..
+            cd ..
             find reviewer/terraform_context -type f -name "*_split_*" | xargs -I {} -n 1 -P 8 python3 reviewer/function.py --filename {} --review-type infrastructure >> reviewer/llm-terraform.txt
           else
             echo "No terraform files changed."
@@ -102,7 +102,7 @@ jobs:
             cd reviewer
             poetry export --without-hashes -o requirements.txt
             pip install -r requirements.txt
-            cd ../..
+            cd ..
             find reviewer/python_context -type f -name "*_split_*" | xargs -I {} -n 1 -P 8 python3 reviewer/function.py --filename {} --review-type python >> reviewer/llm-python.txt
           else
             echo "No python files changed."
