@@ -69,7 +69,7 @@ jobs:
           git fetch origin $HEAD
 
           # ---------------- Terraform ----------------
-          terraform_changed_files=$(git diff --diff-filter=ACMR --name-only origin/$BASE...origin/$HEAD "**" | grep '\.tf$' || true)
+          terraform_changed_files=$(git diff --diff-filter=ACMR --name-only origin/$BASE...origin/$HEAD "**" | grep '\.tf$' | grep -v 'modules/' || true)
           if [ -n "$terraform_changed_files" ]; then
             echo "terraform files changed: $terraform_changed_files"
             mkdir -p reviewer/terraform_context
@@ -90,10 +90,7 @@ jobs:
           fi
 
           # ---------------- Python ----------------
-          python_changed_files=$(git diff --diff-filter=ACMR --name-only origin/$BASE...origin/$HEAD \
-          "src/**" \
-          ':!src/examples/**' \
-          ':!reviewer/**' | grep '\.py$' || true)
+          python_changed_files=$(git diff --diff-filter=ACMR --name-only origin/$BASE...origin/$HEAD "src/**" ':!src/examples/**' | grep '\.py$' || true)
           if [ -n "$python_changed_files" ]; then
             echo "python files changed: $python_changed_files"
             mkdir -p reviewer/python_context
