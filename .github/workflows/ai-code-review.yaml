@@ -30,6 +30,11 @@ jobs:
         with:
           ref: ${{ github.event.head.sha }}
 
+      - name: Download reviewer folder from FiremindSandbox/.github repo
+        run: |
+          mkdir -p reviewer
+          curl -L https://github.com/FiremindSandbox/.github/archive/refs/heads/main.tar.gz | tar -xz --strip-components=1 .github-main/reviewer
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
