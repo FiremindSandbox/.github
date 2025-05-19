@@ -27,7 +27,6 @@ REGION_NAME = os.getenv("REGION_NAME", "us-east-1")
 CONFLUENCE_URL = os.getenv("CONFLUENCE_URL", "https://firemind.atlassian.net/wiki")
 EMAIL = os.getenv("EMAIL", "james.staples@firemind.com")
 CONFLUENCE_API_TOKEN = os.getenv("CONFLUENCE_API_TOKEN")
-print(f"token: {CONFLUENCE_API_TOKEN}")
 
 session = boto3.Session(region_name=REGION_NAME)
 bedrock = session.client("bedrock-runtime")
