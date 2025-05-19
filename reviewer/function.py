@@ -280,15 +280,15 @@ def handle_code_review_request(page_id, filepath, system_prompt_template):
 
 
 def agent(filename, reviewType):
-    try:
-        response = handle_code_review_request(
-            reviewType["pageID"], filename, reviewType["template"]
-        )
-        print(response)
-        return response
+    # try:
+    response = handle_code_review_request(
+        reviewType["pageID"], filename, reviewType["template"]
+    )
+    print(response)
+    return response
 
-    except Exception as e:
-        logger.error(f"Error when invoking agent: {e}")
+    # except Exception as e:
+    #     logger.error(f"Error when invoking agent: {e}")
 
 
 agent(args.filename, agent_system_prompt_templates[args.reviewType])
