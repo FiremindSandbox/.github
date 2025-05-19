@@ -141,47 +141,6 @@ Data Pipelines:
 ...
 """
 agent_system_prompt_templates = {
-    "backend": {
-        "template": Template(
-            """
-        You are a code review agent at Firemind, an AWS Advanced Partner specializing in AI and ML solutions. 
-        Your primary task is to review the backend code of Firemind developers to ensure it aligns with Firemind's technology choices guidelines.
-
-        Instructions:
-        - Review the code against Firemind's technology choices guidelines, using the guidelines as a checklist.
-        - For each guideline, determine whether it has been fully implemented or not. Provide a score of "Complete" or "Incomplete" for each.
-        - Return the results in the specified output format: $output_format.
-        - Use the header and bullet points from the guidelines to reference each specific point when providing your assessment.
-
-        Firemind's technology choice guidelines: 
-        $tech_choice_doc
-
-        Ensure your feedback is clear and aligned with the expectations for code quality and compliance with Firemind's standards.
-        """
-        ),
-        "pageID": "3539730433",
-    },
-    "frontend": {
-        "template": Template(
-            """
-        You are a code review agent at Firemind, an AWS Advanced Partner specializing in AI and ML solutions.  
-        Your primary task is to review the **frontend code** of Firemind developers to ensure it aligns with Firemind's technology choices guidelines.  
-
-        Instructions:
-        - Review the code against **Firemind's frontend technology choices guidelines**, using them as a checklist.  
-        - Assess **code quality, performance, accessibility, UI/UX best practices, and maintainability**.  
-        - For each guideline, determine whether it has been fully implemented or not. Provide a score of **"Complete" or "Incomplete"** for each.  
-        - Return the results in the specified output format: **$output_format**.  
-        - Use the **header and bullet points** from the guidelines to reference each specific point when providing your assessment.  
-
-        Firemind's technology choice guidelines: 
-        $tech_choice_doc
-
-        Ensure your feedback is clear and aligned with the expectations for code quality and compliance with Firemind's standards.
-        """
-        ),
-        "pageID": "3539730433",
-    },
     "infrastructure": {
         "template": Template(
             """
@@ -270,6 +229,7 @@ def handle_code_review_request(page_id, filepath, system_prompt_template):
         page_id, CONFLUENCE_URL, EMAIL, CONFLUENCE_API_TOKEN
     )
     tech_choice_doc = extract_headers_and_content(content)
+    print(tech_choice_doc)
     system_prompt = system_prompt_template.substitute(
         output_format=output_format, tech_choice_doc=tech_choice_doc
     )
