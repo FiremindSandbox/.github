@@ -42,9 +42,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: "arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/${{ vars.GHA_IAM_ROLE_NAME }}"
-          role-session-name: ${{ vars.GHA_IAM_ROLE_NAME }}
-          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: arn:aws:iam::026090512591:role/GithubActionsDeploymentIAMRole
+          role-session-name: GithubActionsDeploymentIAMRole
+          aws-region: eu-west-1
 
       - name: Install poetry
         run: |
